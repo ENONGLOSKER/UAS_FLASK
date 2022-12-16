@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" type="image/png" href="{{url_for('static', filename='STMIKSZNW.png')}}" />
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous" />
+
+    <title>SIAKAD | IN MAHASISWA</title>
+  </head>
+
+  <body>
+    <!-- navbar -->
+
+    <!-- menu -->
+    <div class="row">
+      <!-- sidebar -->
+      <div
+        class="col-2 bg-dark pt-3 ps-3 fixed-start"
+        style="margin-right: -2px">
+        <ul class="nav flex-column">
+          <!-- akun -->
+          <li class="nav-item text-center text-success">
+            <a class="nav-link text-white mb-1" aria-current="page" href="#">
+              <img src="{{url_for('static', filename='STMIKSZNW.png')}}" width="80px" height="80px" />
+              <h5 class="mt-1">KHS <span class="text-success">MAHASISWA</span></h5>
+            </a>
+          </li>
+          <li>
+            <form class="d-flex">
+              <input
+                class="form-control me-2"
+                type="search"
+                placeholder="Search"
+                aria-label="Search" />
+              <button class="btn btn-outline-success" type="submit">
+                Cari
+              </button>
+            </form>
+          </li>
+          <hr class="text-white" />
+
+          <li class="nav-item">
+            <a
+              class="nav-link text-white"
+              aria-current="page"
+              href="{{ url_for('index')}}">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-file-earmark-diff" viewBox="0 0 16 16">
+                <path d="M8 5a.5.5 0 0 1 .5.5V7H10a.5.5 0 0 1 0 1H8.5v1.5a.5.5 0 0 1-1 0V8H6a.5.5 0 0 1 0-1h1.5V5.5A.5.5 0 0 1 8 5zm-2.5 6.5A.5.5 0 0 1 6 11h4a.5.5 0 0 1 0 1H6a.5.5 0 0 1-.5-.5z"/>
+                <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z"/>
+              </svg>
+              Data Prodi
+            </a>
+          </li>
+          <hr class="text-white" />
+          <li class="nav-item">
+            <a
+              class="nav-link active text-white"
+              aria-current="page"
+              href="{{ url_for('mahasiswa')}}">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-file-earmark-person" viewBox="0 0 16 16">
+                <path d="M11 8a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2v9.255S12 12 8 12s-5 1.755-5 1.755V2a1 1 0 0 1 1-1h5.5v2z"/>
+              </svg>
+              Data Mahasiswa
+            </a>
+          </li>
+          <hr class="text-white" />
+          <li class="nav-item">
+            <a
+              class="nav-link text-white"
+              aria-current="page"
+              href="{{ url_for('dosen')}}">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-file-earmark-person" viewBox="0 0 16 16">
+                <path d="M11 8a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2v9.255S12 12 8 12s-5 1.755-5 1.755V2a1 1 0 0 1 1-1h5.5v2z"/>
+              </svg>
+              Data Dosen
+            </a>
+          </li>
+          <hr class="text-white" />
+          <li class="nav-item">
+            <a
+              class="nav-link text-white"
+              aria-current="page"
+              href="{{ url_for('mk')}}">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-file-earmark-text" viewBox="0 0 16 16">
+                <path d="M5.5 7a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5zM5 9.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5z"/>
+                <path d="M9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.5L9.5 0zm0 1v2A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z"/>
+              </svg>
+              Data Mata Kuliah
+            </a>
+          </li>
+          <hr class="text-white" />
+          <li class="nav-item">
+            <a
+              class="nav-link text-white"
+              aria-current="page"
+              href="{{ url_for('nilai')}}">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-file-earmark-text" viewBox="0 0 16 16">
+                <path d="M5.5 7a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5zM5 9.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5z"/>
+                <path d="M9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.5L9.5 0zm0 1v2A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z"/>
+              </svg>
+              Data Nilai
+            </a>
+          </li>
+          <hr class="text-white" />
+          <li class="nav-item">
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link text-white"
+              aria-current="page"
+              href="{{ url_for('khs')}}">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-file-earmark-text" viewBox="0 0 16 16">
+                <path d="M5.5 7a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5zM5 9.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5z"/>
+                <path d="M9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.5L9.5 0zm0 1v2A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z"/>
+              </svg>
+              Data KHS
+            </a>
+          </li>
+          <hr class="text-white" />
+          <li class="nav-item">
+      </div>
+
+
+      <!-- conten -->
+
+      <div class="col-10">
+        <nav class="navbar navbar-light bg-light">
+          <div class="container-fluid">
+            <a class="navbar-brand text-success" href="#">
+              <h3>INPUT DATA MAHASISWA</h3>
+            </a>
+            <a class="navbar-brand" href="#">
+              <h6 class="d-inline-block me-1">Administrator</h6>
+              <img src="{{url_for('static', filename='d2.png')}}" width="35px" height="35px" />
+            </a>
+          </div>
+        </nav>
+
+        <div class="container mx-2">
+
+          <!-- FORM -->
+        <div class="row">
+          <div class="col-5 offset-3 mt-2">
+            <form action="/addmh" method="post">
+              <div class="mb-3">
+                <label for="nim" class="form-label">Nim</label>
+                <input type="text" name="nim" class="form-control" id="nim" placeholder="masukan nim">
+              </div>
+              <div class="mb-3">
+                <label for="namaprodi" class="form-label">Kode Prodi</label>
+                <input type="text" name="kode_prodi" class="form-control" id="namaprodi" placeholder="masukan nama prodi">
+              </div>
+              <div class="mb-3">
+                <label for="nama" class="form-label">Nama</label>
+                <input type="text" name="nama" class="form-control" id="nama" placeholder="masukan nama">
+              </div>
+              <div class="col-auto">
+                <label for="autoSizingSelect" class="form-label">Jenis Kelamin</label>                
+                <select name="jenis_kelamin" class="form-select" id="autoSizingSelect">
+                  <option selected>Pilih</option>
+                  <option value="1">L</option>
+                  <option value="2">P</option>                  
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="tempatlahir" class="form-label">Tempat Lahir</label>
+                <input type="text" name="tempat_lahir" class="form-control" id="tempatlahir" placeholder="masukan tempat lahir">
+              </div>
+              <div class="mb-3">
+                <label for="tgl lahir" class="form-label">Tanggal Lahir</label>
+                <input type="date" name="tanggal_lahir" class="form-control" value="2023-01-01" id="tgl lahir">
+              </div>
+              <div class="mb-3">
+                <label for="alamat" class="form-label">Alamat</label>
+                <textarea name="alamat" class="form-control" id="alamat" rows="3" placeholder="masukan alamat des.kec.kab"></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary">
+                Simpan
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-arrow-right-circle-fill" viewBox="0 0 16 16">
+                  <path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"/>
+                </svg>
+              </button>
+            </form>
+          </div>
+          </div>
+        </div>
+        <!-- END FORM -->
+
+        <br />
+      </div>
+    </div>
+
+    <!-- footer -->
+    <footer class="navbar navbar-dark bg-dark py-3">
+      <div class="container-fluid justify-content-center text-white">
+        <a class="navbar-brand" href="#">
+          <h6>
+            &copy; Copyright By <span class="text-success">Elqusairi</span> 2022
+          </h6>
+        </a>
+      </div>
+    </footer>
+    <!-- end -->
+
+
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+      crossorigin="anonymous"></script>
+  </body>
+</html>
+

@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/png" href="{{url_for('static', filename='STMIKSZNW.png')}}" />
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+      <style>
+        #head h3,h1{
+          font-size: 200;
+        }
+      </style>
+
+    <title>SIAKAD | KHS</title>
+  </head>
+  <body>
+    <div class="container-fluid">
+        <div class="container mt-3 pt-4" style="background-color: rgb(243, 240, 240);">
+            <div class="row">
+                <div class="col-2 ps-5  pb-2">
+                  <a href="{{ url_for('index')}}">
+                    <img src="{{url_for('static', filename='STMIKSZNW.png')}}" width="170px">
+                  </a>
+                </div>
+                <div class="col-10 text-center ps-1" id="head">
+                    <h3>SEKOLAH TINGGI MANAJEMEN INFORMATIKA DAN KOMPUTER</h3>
+                    <h1>(STMIK) SYAIKH ZAINUDDIN NW</h1>
+                    <h3>ANJANI LOMBOK TIMUR - NTB</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 text-center" style="background-color: rgb(51, 51, 51); color: white;">
+                    <h6>Alamat: Jln.Raya Matram-Lb.Lombok KM.49 Anjani Lombok Timur NTB Telp/Fax.0376635645 KP.83652</h6>
+                </div>
+            </div>
+        </div>
+        <!-- end header -->
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center pt-3" >
+                    <h4>KARTU HASIL SEMESTER</h4>
+                    <h4>(KHS)</h4>
+                </div>
+                <form action="/khs" method="post" >                
+                  <select id="nama" name="nim" > 
+                    {% if request.method == 'GET' %}
+                    {% for ketemu in cari %}
+                    <option value="{{ ketemu[0] }}" >
+                      {{ketemu[1]}}
+                    </option>
+                    {% endfor %} 
+                                            
+                    {% else %}
+                    {% for ketemu in data.cari %}
+                    <option value="{{ ketemu[0] }}" >
+                      {{ketemu[1]}}
+                    </option>
+                    {% endfor %}                                   
+                    {% endif %}                                   
+                  </select>
+                  <button type="submit"> cari data </button>                                
+              </form>
+                {% if request.method == 'POST' %}
+                  
+                
+                <div class="col-12">
+                    <table>
+                      <tbody>  
+                                                  
+                        <tr>
+                          <td><h6>NAMA</h6></td> 
+                          <td>
+                            <h6>: {{data.mhs[1]}}</h6>
+                        </td> 
+                       
+                        </tr>              
+                        <tr>
+                          <td><h6>NIM</h6></td>
+                          <td>
+                            <h6>: 
+                              {{data.mhs[0]}}
+                            </h6>                            
+                          </td> 
+                      
+                        </tr>              
+                        <tr>
+                          <td><h6>PRODI</h6></td>
+                          <td><h6>: {{data[2]}}</h6></td>
+                        </tr>       
+                        
+                      </tbody>
+                    </table>
+                </div>
+                
+                <div class="col-6 offset-3 py-3">
+                    <table class="table table-bordered text-center">
+                        <thead class="table-dark">
+                          <tr>
+                            <th scope="col">No</th>
+                            <th scope="col">Mata Kuliah</th>
+                            <th scope="col">Kredit</th>
+                            <th scope="col">Nilai</th>
+                            <th scope="col">KxN</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                         
+                          {% set jlh = namespace(sks=0) %}
+                          {% set jmlh = namespace(kxn=0) %}
+
+                          {% set sks_g = namespace(gagal=0) %}
+                          {% set sks_l = namespace(lulus=0) %}
+                          {% set sks_d = namespace(dikenankan=0) %}
+                          
+                          
+
+                          {% for datas in data.data %}
+                          {% set jlh.sks = jlh.sks + datas[3]%}
+                          {% set mh = namespace(nama=datas[1]) %}
+                          
+                          <tr>
+                            <th>{{ loop.index }}</th>
+                            <td  class="text-start">{{datas[4]}}</td>
+                            <td>{{datas[3]}}</td>
+                            <td>
+                              {%if datas[10] <= 100 and datas[10]>=80  %}
+                              A
+                              {% set n = 4 %}
+                              {% set kxn =n*datas[3] %}
+                              {% set sks_l.lulus = sks_l.lulus + datas[3] %}
+
+                              {% elif datas[10] <= 79 and datas[10]>=70  %}
+                              B
+                              {% set n = 3 %}
+                              {% set kxn =n*datas[3] %}
+                              {% set sks_l.lulus = sks_l.lulus + datas[3] %}
+
+                              {% elif datas[10] <= 60 and datas[10]>=60  %}
+                              C
+                              {% set n = 2 %}
+                              {% set kxn =n*datas[3] %}
+                              {% set sks_l.lulus = sks_l.lulus + datas[3] %}
+
+                              {% elif datas[10] <= 59 and datas[10]>=50  %}
+                              D
+                              {% set n = 1 %}
+                              {% set kxn =n*datas[3] %}
+                              {% set sks_g.gagal = sks_g.gagal + datas[3] %}
+
+                              {% else %}
+                              E
+                              {% set n = 0 %}
+                              {% set kxn =n*datas[3] %}
+                              {% set sks_g.gagal = sks_g.gagal + datas[3] %}
+                              {% endif %}
+
+                              {% set jmlh.kxn = jmlh.kxn + kxn %}
+                            </td>
+
+                            <td> 
+                              {{ kxn }} 
+                            </td>
+                            
+                          </tr>
+                          <tr>
+                            {% endfor %}                         
+                            <th scope="row" colspan="2">Jumlah</th>
+                            <td>{{ jlh.sks }}</td>
+                            <td></td>
+                            <td>{{ jmlh.kxn }}</td>                        
+                          </tr>
+                        </tbody>
+                      </table>
+                </div>
+                <div class="col-12">
+                    <table>
+                      <tbody>
+                        {% set ip = 0 %}
+                        {% set jlh_ip =jmlh.kxn / jlh.sks %}
+
+                       
+
+                        <tr>
+                          <td><h6>SKS Diambil</h6></td>
+                          <td><h6>: {{jlh.sks}}</h6></td>
+                        </tr>
+                        <tr>
+                          <td><h6>SKS Lusus </h6></td>
+                          <td><h6>: {{sks_l.lulus}}</h6></td>
+                        </tr>
+                        <tr>
+                          <td><h6>SKS Gagal</h6></td>
+                          <td><h6>: {{sks_g.gagal}} </h6></td>
+                        </tr>
+                        <tr>
+                          <td><h6>SKS Diperkenankan</h6></td>
+                          {% if jlh_ip >= 3.50 %}
+                          <td><h6>: 24</h6></td>
+                          {% elif jlh_ip >= 3.0 %}
+                          <td><h6>: 20</h6></td>
+                          {%else%}
+                          <td><h6>: 16</h6></td>
+                          {%endif%}
+                          
+                        </tr>
+                        <tr>
+                          <td><h6>IP Semester</h6></td>
+                          <td><h6>: {{jlh_ip}}</h6></td>
+                        </tr>
+                        
+                      </tbody>
+                    </table>
+                    
+                </div>
+                <div class="col-4 py-4 offset-1 text-center">
+                    <h6>Mengetahui;</h6>
+                    <h6>Puket I,</h6>
+                    <img src="{{url_for('static', filename='1.png')}}" width="200">
+                    <h6>Drs.H Marzuki Adami,S.H.,M.AP</h6>
+                </div>
+                <div class="col-4 py-4 offset-1 text-center">
+                    <h6>Anjani, 13 Desember 2022</h6>
+                    <h6>Ketua Program Studi,</h6>
+                    <img src="{{url_for('static', filename='2.png')}}" width="120">
+                    <h6>LL. Puji Indra Karisma, M.Cs</h6>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+
+
+    </div>
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script>
+      function removeduplicate()
+      {
+      var mycode = {};
+      $("select [id='mylist'] > option").each(function () {
+          if(mycode[this.text]) {
+              $(this).remove();
+          } else {
+              mycode[this.text] = this.value;
+          }
+      });
+      }
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  </body>
+</html>

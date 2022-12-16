@@ -1,0 +1,28 @@
+https://stackoverflow.com/questions/3727045/set-variable-in-jinja
+
+
+
+Silahkan tambah data Mata Kuliah sebanyak banyaknya
+Kemudian setelah Mata Kuliah bertambah tambah lagi nilai dari mata kuliah tersebut berdasarkan nim tertentu
+Jumlah SKS bisa disum kayaknya di sql, tapi tanpa SQL jg harusnya bisa di template jinja
+
+total_sks = 0
+for nilai in khs:
+ total_sks += nilai.sks
+
+print(total_sks)
+
+
+@app.route('/cari', methods=['GET', 'POST'])
+def cari():
+    if request.method == 'POST':
+        data = request.form
+        cari = data['cari']
+        cursor = db.cursor()
+        
+        query = f" SELECT * FROM tb_nilai WHERE nama = cari='{cari}'"
+        cursor.execute(query)
+        db.commit()
+        return redirect('/khs', code=302, Response=None)
+
+    return render_template('form.html')

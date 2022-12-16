@@ -1,0 +1,18 @@
+select tb_mahasiswa.nim,tb_mahasiswa.nama,tb_jurusan.nama_jurusan,tb_matakuliah.nama_mk,tb_dosen.nama,tb_nilai.absen,
+tb_nilai.tugas,tb_nilai.uts,tb_nilai.uas,(0.1*tb_nilai.absen)+(0.2*tb_nilai.tugas)+(0.3*tb_nilai.uts)+(0.4*tb_nilai.uas) as total from
+(select * from tb_nilai where absen=60 or absen=40) as tb_nilai
+join tb_mahasiswa on (tb_mahasiswa.nim = tb_nilai.nim)
+join tb_matakuliah on (tb_matakuliah.kode_mk = tb_nilai.kode_mk)
+join tb_dosen on (tb_dosen.nidn = tb_matakuliah.nidn)
+join tb_jurusan on (tb_jurusan.kode_jurusan = tb_mahasiswa.kode_jurusan);
+
+ 
+
+ 
+
+INSERT INTO tb_mahasiswa VALUES ('204855035','rabiatul adawiyah','p','sepit','2001-10-28','sepit.sepit.keruak','55');
+INSERT INTO tb_mahasiswa VALUES ('204855090','novia ardani','p','sangkawati','2001-11-07','lando','55');
+INSERT INTO tb_mahasiswa VALUES ('204855111','wardatul ummi','p','sukamandi','2002-11-11','lenek.sukamandi','55');
+INSERT INTO tb_mahasiswa VALUES ('204855101','ruswanti mulyana','p','sikur','2002-10-28','sikur','55');
+INSERT INTO tb_mahasiswa VALUES ('204855033','ira miatun','p','masbagik','1999-10-28','masbagik','55');
+INSERT INTO tb_mahasiswa VALUES ('204855009','rizqa ulfaturrahmi','p','sakra','2001-10-28','sakra','55');
